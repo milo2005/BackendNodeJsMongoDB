@@ -7,12 +7,10 @@ var bodyParser = require('body-parser');
 var mongo = require('mongodb').MongoClient;
 
 var api = require('./routes/api');
-var events = require('./routes/events');
-var follows = require('./routes/follows');
 
 var mdb;
 
-mongo.connect("mongodb://localhost:27017/enterate", function(err, db) {
+mongo.connect("mongodb://localhost:27017/database", function(err, db) {
   if(!err) {
     console.log("Se conecto a Mongo");
     mdb = db;
@@ -38,8 +36,6 @@ app.use(function(req, res, next) {
 });
 
 app.use('/api', api);
-app.use('/apix/events', events);
-app.use('/apix/follows', follows);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
